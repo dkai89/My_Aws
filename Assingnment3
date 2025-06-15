@@ -1,0 +1,114 @@
+Perfect! Here's your **Assignment 3 Beginner-Friendly Workflow** for creating and testing an IAM **Role** with specific user access to **VPC** and **DynamoDB**.
+
+---
+
+## ✅ Assignment 3: IAM Role for Dev1 and Dev2 – Beginner-Friendly Workflow
+
+### 🎯 Objective:
+
+* Create an IAM Role that **only Dev1 and Dev2** can assume.
+* This role allows **full access to VPC and DynamoDB**.
+* Login as **Dev1** and test if the role can be assumed.
+
+---
+
+## 🧩 Step-by-Step Lab Instructions
+
+---
+
+### 1. **Go to IAM → Roles → Click “Create Role”**
+
+---
+
+### 2. **Choose Trusted Entity**
+
+* Select **“Another AWS account”**
+* Enter your own **AWS Account ID** (from top-right corner > “My Account”)
+* DO NOT check external ID
+* Click **Next**
+
+---
+
+### 3. **Attach Permissions (VPC + DynamoDB Full)**
+
+* In the permissions step:
+
+  * Search and select: `AmazonVPCFullAccess`
+  * Search and select: `AmazonDynamoDBFullAccess`
+* Click **Next**
+
+---
+
+### 4. **Name and Create the Role**
+
+* Role Name: `Dev-Dynamo-VPC-Access-Role`
+* Description: Role with VPC + DynamoDB access for Dev1 and Dev2
+* Click **Create Role**
+
+---
+
+### 5. **Edit Trust Relationship for Dev1 and Dev2**
+
+* Go to **IAM → Roles → Dev-Dynamo-VPC-Access-Role**
+* Click on **Trust relationships** tab
+* Click **Edit trust policy**
+* Replace JSON with the following (edit `<ACCOUNT_ID>`):
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": [
+          "arn:aws:iam::<ACCOUNT_ID>:user/Dev1",
+          "arn:aws:iam::<ACCOUNT_ID>:user/Dev2"
+        ]
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+```
+
+> ✅ Replace `<ACCOUNT_ID>` with your actual AWS account ID.
+
+* Click **Update policy**
+
+---
+
+### 6. **Test Role Switching (as Dev1)**
+
+#### a. Login as Dev1:
+
+* Use the **IAM user login URL** (from IAM dashboard)
+* Enter Dev1’s username and password
+
+#### b. Switch Role:
+
+* Click on your username (top-right) → **Switch Role**
+* Enter:
+
+  * **Account ID** = your AWS account ID
+  * **Role Name** = `Dev-Dynamo-VPC-Access-Role`
+* Click **Switch Role**
+
+---
+
+### 7. **Verify Permissions**
+
+Once the role is assumed:
+
+* Go to **VPC** dashboard → You should be able to create or manage VPC resources
+* Go to **DynamoDB** dashboard → You should have full access
+
+---
+
+### ✅ Result:
+
+You now have a working IAM Role that only Dev1 and Dev2 can assume, giving them full access to DynamoDB and VPC.
+
+---
+
+Let me know if you're ready for **Assignment 4** — creating CloudWatch **dashboard** for EC2 monitoring!

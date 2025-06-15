@@ -1,0 +1,125 @@
+Perfect! Here's your **Assignment 5 Beginner-Friendly Workflow** for creating **CloudWatch Alarms** – one for **billing** and another for **CPU utilization**, with **SNS notification**.
+
+---
+
+## ✅ Assignment 5: CloudWatch Alarms for Billing and EC2 CPU – Beginner-Friendly Workflow
+
+### 🎯 Objective:
+
+1. Create a **billing alarm** that triggers if estimated charges go above **\$500**.
+2. Create a **CPU utilization alarm** for an EC2 instance that:
+
+   * Triggers if CPU > **65%**
+   * Sends a notification using **SNS topic**
+
+---
+
+## 🧩 Step-by-Step Lab Instructions
+
+---
+
+## 🔹 Part 1: Billing Alarm
+
+### 1. **Enable Billing Metrics**
+
+> 🚨 Billing alarms work **only in the us-east-1 (N. Virginia)** region!
+
+* Go to: [https://console.aws.amazon.com/billing/home](https://console.aws.amazon.com/billing/home)
+* Click on **“Billing Preferences”**
+* Enable:
+
+  * ✅ Receive Billing Alerts
+* Save changes
+
+---
+
+### 2. **Create Billing Alarm**
+
+* Go to: [https://console.aws.amazon.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)
+* Region: Select **N. Virginia (us-east-1)** from top-right
+* Click **Alarms** → **Create Alarm**
+* Choose metric → Search: `Billing` → Select `Total Estimated Charge`
+* Click on metric: `EstimatedCharges`
+* Select `Currency` = USD → Click **Select metric**
+
+#### Set threshold:
+
+* Whenever estimated charges **Greater than** `500`
+* Period: `6 hours` (or keep default)
+* Click **Next**
+
+---
+
+### 3. **Notification (Optional for billing)**
+
+You can skip SNS for now or create a topic (see next section).
+
+* Click **Next** → Name: `Billing-Alarm-Over500`
+* Click **Create alarm**
+
+---
+
+## 🔹 Part 2: CPU Utilization Alarm with SNS Notification
+
+### 1. **Create SNS Topic**
+
+* Go to: [https://console.aws.amazon.com/sns/v3](https://console.aws.amazon.com/sns/v3/home)
+* Click **Topics** → **Create topic**
+* Type: Standard
+* Name: `CPUAlarmNotifyTopic`
+* Click **Create topic**
+
+### 2. **Create Subscription**
+
+* Click your new topic → **Create subscription**
+* Protocol: `Email`
+* Endpoint: Enter your email ID
+* Click **Create subscription**
+* 📨 Go to your email and **Confirm** the subscription!
+
+---
+
+### 3. **Create EC2 CPU Alarm**
+
+* CloudWatch → Alarms → **Create Alarm**
+* Choose metric → EC2 → Per-instance metrics → Select your instance
+* Select **CPUUtilization** → Click **Select metric**
+
+#### Set threshold:
+
+* Condition: **Greater than 65**
+* Period: `5 minutes`
+* Click **Next**
+
+#### Notification:
+
+* Select SNS Topic: `CPUAlarmNotifyTopic`
+
+* (If not showing, refresh)
+
+* Click **Next** → Name: `EC2-High-CPU-Alarm`
+
+* Click **Create alarm**
+
+---
+
+### ✅ Final Verification:
+
+* In **CloudWatch → Alarms**, check both alarms.
+* In **SNS → Subscriptions**, confirm your email status is `Confirmed`.
+* Trigger an alarm by creating load on EC2 or increasing billing.
+
+---
+
+### 🧪 Optional Tip:
+
+* Use `stress` command on EC2 instance (Linux) to simulate CPU load:
+
+```bash
+sudo yum install stress -y
+stress --cpu 4 --timeout 300
+```
+
+---
+
+Let me know if you'd like me to compile all 5 assignments into **a single PDF for download**.

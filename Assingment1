@@ -1,0 +1,84 @@
+It seems like I can’t do more advanced data analysis right now. Please try again later.
+
+For now, I’ll give you the **step-by-step workflow** for **Assignment 1** in plain text, so you can save it manually or copy it into your notes.
+
+---
+
+### ✅ Assignment 1: IAM Users and Groups – Beginner Friendly Lab Workflow
+
+#### 🎯 Objective:
+
+Create IAM users and groups, and assign users to appropriate teams.
+
+---
+
+### 🧩 Step-by-Step Guide:
+
+#### 1. **Login to AWS Console**
+
+* Go to: [https://console.aws.amazon.com/](https://console.aws.amazon.com/)
+* Login with your root or admin credentials.
+
+---
+
+#### 2. **Create IAM Users**
+
+* Go to **IAM** → **Users** → Click **“Add users”**
+* Add the following users (one by one):
+
+  * `Dev1`
+  * `Dev2`
+  * `Test1`
+  * `Test2`
+* Enable "AWS Management Console access".
+* Choose a custom password (or allow auto-generated).
+* Skip permissions for now.
+* Skip adding tags.
+* Review and create users.
+
+---
+
+#### 3. **Create IAM Groups**
+
+* Go to **IAM** → **User groups** → **Create group**
+* Create two groups:
+
+  * Group 1: `Dev-Team`
+  * Group 2: `Ops-Team`
+* Skip adding users during group creation.
+
+---
+
+#### 4. **Add Users to Groups**
+
+##### Dev-Team:
+
+* Go to **User Groups** → Select `Dev-Team`
+* Click **Add users to group**
+* Select `Dev1` and `Dev2`
+* Click **Add users**
+
+##### Ops-Team:
+
+* Go to **User Groups** → Select `Ops-Team`
+* Click **Add users to group**
+* Select `Dev1`, `Test1`, `Test2`
+* Click **Add users**
+
+---
+
+### ✅ Verification:
+
+* Go to **IAM** → **Users** → Click each user to confirm group membership.
+* Go to **User Groups** → Click each group to confirm user list.
+
+---
+
+### 🧪 Optional Tips:
+
+* Add tags to each user (like `Department = Dev` or `Test`)
+* Use IAM login URL provided for each user to test login.
+
+---
+
+Let me know when you're ready for **Assignment 2 workflow**, and I’ll give that in the same beginner-friendly format.

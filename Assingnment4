@@ -1,0 +1,92 @@
+Great! Here's your **Assignment 4 Beginner-Friendly Workflow** for creating a **CloudWatch Dashboard** to monitor **CPU utilization and network activity** of a specific EC2 instance.
+
+---
+
+## ✅ Assignment 4: CloudWatch Dashboard – Beginner-Friendly Workflow
+
+### 🎯 Objective:
+
+Create a **CloudWatch Dashboard** that monitors:
+
+* **CPU Utilization**
+* **Network In (Bytes)**
+* **Network Out (Bytes)**
+  …for a specific EC2 instance.
+
+---
+
+## 🧩 Step-by-Step Lab Instructions
+
+---
+
+### 1. **Go to CloudWatch Console**
+
+* Open: [https://console.aws.amazon.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)
+* From the left menu, click on **Dashboards**
+* Click **Create dashboard**
+
+---
+
+### 2. **Name the Dashboard**
+
+* Give a name like: `EC2-Monitoring-Dashboard`
+* Click **Create dashboard**
+
+---
+
+### 3. **Add CPU Utilization Widget**
+
+* Choose **“Line”** or **“Number”** as widget type → Click **Next**
+* Select **“EC2”** as the service
+* In the **Metric Name**, choose:
+
+  * `Per-Instance Metrics` → Select your **EC2 Instance ID**
+  * Choose **CPUUtilization**
+* Click **Create widget**
+
+---
+
+### 4. **Add Network In and Network Out Widgets**
+
+#### a. Add another widget → Click **“Add widget”**
+
+* Choose **“Line”** or **“Number”**
+* Select EC2 → Per-Instance Metrics
+* Choose:
+
+  * **NetworkIn**
+* Click **Create widget**
+
+#### b. Repeat for **NetworkOut**
+
+* Same steps, choose `NetworkOut`
+
+---
+
+### 5. **Arrange and Save Dashboard**
+
+* Drag widgets around to arrange them neatly
+* Click **Save dashboard**
+
+---
+
+### ✅ Dashboard Verification:
+
+Now your dashboard will show:
+
+* CPU Utilization
+* Network In (bytes)
+* Network Out (bytes)
+  …for the selected EC2 instance — in real time!
+
+---
+
+### 🧪 Optional Tips:
+
+* You can use “Time range” filter at the top to view past hour/day/week data.
+* Customize widgets with thresholds or colors if needed.
+* Share dashboard URL with your team.
+
+---
+
+Let me know when you’re ready for **Assignment 5** — setting up **CloudWatch Alarms** for billing and CPU utilization with SNS notification!

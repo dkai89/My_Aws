@@ -1,0 +1,123 @@
+Great! Here's the **step-by-step workflow for Assignment 2** in a beginner-friendly format:
+
+---
+
+## ✅ Assignment 2: IAM Policies and Group Permissions – Beginner Lab Workflow
+
+### 🎯 Objective:
+
+Create two IAM policies with specific permissions and attach them to the appropriate IAM groups created in Assignment 1.
+
+---
+
+### 🧩 Step-by-Step Guide:
+
+---
+
+### 1. **Create IAM Policy #1** (Full S3 + Create EC2 + Full RDS)
+
+#### a. Go to IAM → Policies → Create Policy
+
+#### b. Choose the **JSON** tab and paste this code:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "s3:*",
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": "ec2:RunInstances",
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": "rds:*",
+      "Resource": "*"
+    }
+  ]
+}
+```
+
+#### c. Click **Next: Tags** → **Next: Review**
+
+* Name: `Policy-Dev-Full-S3-RDS-CreateEC2`
+* Description: Full S3 & RDS, Create EC2 only
+* Click **Create policy**
+
+---
+
+### 2. **Create IAM Policy #2** (CloudWatch + Billing full, EC2/S3 list only)
+
+#### a. IAM → Policies → Create Policy → JSON tab → Paste this:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "cloudwatch:*",
+        "aws-portal:*"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "ec2:Describe*",
+        "s3:ListAllMyBuckets",
+        "s3:GetBucketLocation"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
+```
+
+#### b. Click **Next** → **Next** →
+
+* Name: `Policy-Ops-Billing-List-EC2-S3`
+* Description: CloudWatch & Billing full, list EC2/S3 only
+* Click **Create policy**
+
+---
+
+### 3. **Attach Policy #1 to Dev-Team**
+
+* Go to IAM → Groups → Click **Dev-Team**
+* Click **Permissions** → **Add permissions**
+* Choose **Attach policies directly**
+* Search: `Policy-Dev-Full-S3-RDS-CreateEC2`
+* Check the box → Click **Next** → **Add permissions**
+
+---
+
+### 4. **Attach Policy #2 to Ops-Team**
+
+* IAM → Groups → Click **Ops-Team**
+* Click **Permissions** → **Add permissions**
+* Choose **Attach policies directly**
+* Search: `Policy-Ops-Billing-List-EC2-S3`
+* Check the box → Click **Next** → **Add permissions**
+
+---
+
+### ✅ Verification:
+
+* Go to each group → **Permissions** tab → Confirm the attached policies.
+
+---
+
+### 🧪 Optional Tips:
+
+* You can test these permissions by logging in as a group user and trying to access only allowed services.
+
+---
+
+Let me know when you're ready for **Assignment 3 workflow (IAM Role for Dev1 and Dev2 with DynamoDB and VPC access)**!
